@@ -1,0 +1,61 @@
+#!/usr/bin/perl
+use vars qw($VERSION);
+my $APP  = 'rgbterm';
+$VERSION = '0.001';
+
+use strict;
+use Term::ExtendedColor;
+use Term::ExtendedColor::Xresources;
+
+
+my $colors = shift // 15;
+
+$colors =~ /^--?h(?:elp)?/ and print "Usage: rgbterm (int) [-h]\n" and exit 0;
+
+get_rgb($colors);
+
+sub get_rgb {
+  my $upper = shift;
+
+  if( ($upper < 0) or ($upper > 255) ) {
+    print STDERR "Need a value between 0 and 255, inclusive\n" and exit 1;
+  }
+  my $ansi = get_xterm_colors( [0 .. $upper] );
+
+  for my $index(0 .. $upper) {
+    printf("%s %s\n",
+      bg($index, '   '),
+      fg($index, $ansi->{$index}->{rgb}),
+    );
+  }
+}
+
+
+=pod
+
+=head1 NAME
+
+rgbterm - show RGB values for defined terminal colors
+
+=head1 OPTIONS
+
+  -h, --help  show the help and exit
+
+=head1 AUTHOR
+
+  Magnus Woldrich
+  CPAN ID: WOLDRICH
+  magnus@trapd00r.se
+  http://japh.se
+
+=head1 REPORTING BUGS
+
+Report bugs on rt.cpan.org or to magnus@trapd00r.se
+
+=head1 COPYRIGHT
+
+Copyright (C) 2010 Magnus Woldrich. All right reserved.
+This program is free software; you can redistribute it and/or modify it under
+the same terms as Perl itself.
+
+=cut
