@@ -1,11 +1,11 @@
 #!/usr/bin/perl
 use vars qw($VERSION);
 my $APP  = 'rgbterm';
-$VERSION = '0.001';
+$VERSION = '0.002';
 
 use strict;
-use Term::ExtendedColor;
-use Term::ExtendedColor::Xresources;
+use Term::ExtendedColor qw(fg);
+use Term::ExtendedColor::Xresources qw(get_xterm_color);
 
 
 my $colors = shift // 15;
@@ -20,12 +20,13 @@ sub get_rgb {
   if( ($upper < 0) or ($upper > 255) ) {
     print STDERR "Need a value between 0 and 255, inclusive\n" and exit 1;
   }
-  my $ansi = get_xterm_colors( [0 .. $upper] );
+  my $ansi = get_xterm_color( [0 .. $upper] );
 
   for my $index(0 .. $upper) {
-    printf("%s %s\n",
-      bg($index, '   '),
-      fg($index, $ansi->{$index}->{rgb}),
+    printf("%s\n",
+      "$index  => '$ansi->{$index}->{rgb}',",
+      #bg($index, '   '),
+      #fg($index, $ansi->{$index}->{rgb}),
     );
   }
 }
@@ -54,7 +55,7 @@ Report bugs on rt.cpan.org or to magnus@trapd00r.se
 
 =head1 COPYRIGHT
 
-Copyright (C) 2010 Magnus Woldrich. All right reserved.
+Copyright (C) 2010, 2011 Magnus Woldrich. All right reserved.
 This program is free software; you can redistribute it and/or modify it under
 the same terms as Perl itself.
 
