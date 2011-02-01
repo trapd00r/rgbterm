@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 use vars qw($VERSION);
 my $APP  = 'rgbterm';
-$VERSION = '0.002';
+$VERSION = '0.013';
 
 use strict;
 use Term::ExtendedColor qw(fg);
@@ -20,13 +20,15 @@ sub get_rgb {
   if( ($upper < 0) or ($upper > 255) ) {
     print STDERR "Need a value between 0 and 255, inclusive\n" and exit 1;
   }
-  my $ansi = get_xterm_color( [0 .. $upper] );
+  my $ansi = get_xterm_color({
+      index => [0 .. $upper],
+      type  => 'hex'
+    });
+
 
   for my $index(0 .. $upper) {
     printf("%s\n",
       "$index  => '$ansi->{$index}->{rgb}',",
-      #bg($index, '   '),
-      #fg($index, $ansi->{$index}->{rgb}),
     );
   }
 }
