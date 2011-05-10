@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 use vars qw($VERSION);
 my $APP  = 'rgbterm';
-$VERSION = '0.014';
+$VERSION = '0.016';
 
 use strict;
 use Getopt::Long qw(GetOptions);
@@ -18,7 +18,7 @@ GetOptions(
   'v|version' => sub { print "$APP v$VERSION\n" and exit; },
 );
 
-my $colors = shift // 15;
+my $colors = shift // 255;
 
 $colors =~ /^--?h(?:elp)?/ and print "Usage: rgbterm (int) [-h]\n" and exit 0;
 
