@@ -1,27 +1,30 @@
-NAME
+# NAME
     rgbterm - show RGB values of defined terminal colors
 
-OPTIONS
+# DESCRIPTION
+
+![rgbterm](http://devel.japh.se/App-rgbterm/rgbterm.png)
+
+# OPTIONS
       -c, --color     show the color values in color
 
       -h, --help      show the help and exit
       -v, --version   show the version info and exit
       -m, --man       show the manual and exit
 
-AUTHOR
+# AUTHOR
       Magnus Woldrich
       CPAN ID: WOLDRICH
       magnus@trapd00r.se
       http://japh.se
 
-CONTRIBUTORS
+# CONTRIBUTORS
     None required yet.
 
-COPYRIGHT
+# COPYRIGHT
     Copyright 2010, 2011 rgbterms "AUTHOR" and "CONTRIBUTORS" as listed
     above.
 
-LICENSE
+# LICENSE
     This program is free software; you may redistribute it and/or modify it
     under the same terms as Perl itself.
-
