@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 use vars qw($VERSION);
 my $APP  = 'rgbterm';
-$VERSION = '0.016';
+$VERSION = '0.020';
 
 use strict;
 use Getopt::Long qw(GetOptions);
@@ -39,9 +39,11 @@ sub get_rgb {
   for my $index(0 .. $upper) {
     printf("%s\n",
       ($opt_color)
-        ? sprintf("%3d => ", $index) . fg($index, $ansi->{$index}->{rgb})
-        : sprintf("%3d => ", $index) . $ansi->{$index}->{rgb},
-    );
+        ? sprintf("%s.color%03d: #%s",
+            $ENV{HOSTNAME}, $index, fg($index, $ansi->{$index}->{rgb}))
+        : sprintf("%s.color%03d: #%s",
+            $ENV{HOSTNAME}, $index, $ansi->{$index}->{rgb})
+      );
   }
 }
 
